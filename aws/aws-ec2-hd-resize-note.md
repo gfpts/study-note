@@ -51,25 +51,25 @@ Instance 與 Device 資訊必須跟，步驟 **3.**的資訊一樣。
 
  1. 使用 SSH工具登入 EC2 - 檢查磁碟的資料格式
     資料格式必須是 **ext2, ext3, and ext4 ** file systems
-    > [root@ip-10-156-91-176 ~]# file -s /dev/xvde
+    > [root@~]# file -s /dev/xvde
     > /dev/xvde: Linux rev 1.0 **ext4** filesystem data (needs journal recovery) (extents)
     > (large files) (huge files)
 
  2. 檢查原本的硬碟大小
-    > [root@ip-10-156-91-176 ~]# df -h 
+    > [root@~]# df -h 
     > Filesystem Size Used Avail Use% Mounted on 
     > /dev/xvde **30G** 5.7G 23G 21% /
     > tmpfs 296M     0  296M   0% /dev/shm
 
  3. 硬碟延展尚未使用的總容量
     
-    > [root@ip-10-156-91-176 ~]# lsblk
+    > [root@~]# lsblk
     > NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
     >xvde 202:64   0  **40G**  0 disk /
 
  4. 使用 Resize2fs 命令延展硬碟容量
     
-    > [root@ip-10-156-91-176 ~]# **resize2fs /dev/xvde **
+    > [root@~]# **resize2fs /dev/xvde **
     > resize2fs 1.41.12 (17-May-2010)
     > Filesystem at /dev/xvde is mounted on /; on-line resizing required
     > old desc_blocks = 2, new_desc_blocks = 3
@@ -78,7 +78,7 @@ Instance 與 Device 資訊必須跟，步驟 **3.**的資訊一樣。
 
  5. 延展硬碟完成，檢查硬碟容量是否正確
     
-    > [root@ip-10-156-91-176 ~]# df -h
+    > [root@~]# df -h
     > Filesystem      Size  Used Avail Use% Mounted on
     > /dev/xvde        **40G**  5.7G   32G  16% /
     > tmpfs           296M     0  296M   0% /dev/shm
